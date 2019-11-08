@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ds1</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <ds1-root></ds1-root>
+  <div id="content"></div>
+</body>
+<script>
+  const input = document.createElement('ds1-input');
+  const content = document.getElementById('content');
+  content.appendChild(input);
+</script>
+
+</html>
+
+<script>
+  const script2 = document.createElement('script');
+  script2.src = 'http://localhost:4201/main.js';
+  document.body.appendChild(script2);
+
+  const input_ds2 = document.createElement('ds2-input');
+  content.appendChild(input_ds2);
+</script>
+
+<script src="http://127.0.0.1:9090/scripts.js" defer="" onload="ng.core.enableProdMode();"></script>
+
+<script src="http://127.0.0.1:9090/main.js" defer=""></script>
+<script>
+  const input_ds3 = document.createElement('ds3-input');
+  content.appendChild(input_ds3);
+</script>
+
+<script src="http://127.0.0.1:9094/main.js" defer=""></script>
+<script>
+  const input_ds4 = document.createElement('ds4-input');
+  content.appendChild(input_ds4);
+</script>

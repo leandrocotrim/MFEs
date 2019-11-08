@@ -1,0 +1,74 @@
+https://www.softwarearchitekt.at/aktuelles/angular-elements-part-i/
+
+tsconfig.json
+"target": "es2015", -> "target": "es5",
+
+npm i @angular/elements --save
+npm i @webcomponents/custom-elements --save
+
+polyfills.ts
+import '@webcomponents/custom-elements/custom-elements.min';
+
+angular.json
+"scripts": [
+  "node_modules/@webcomponents/custom-elements/src/native-shim.js"
+]
+
+ng add @angular/elements
+
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+  schemas:[
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+// bootstrap: [AppComponent]
+ entryComponents: [
+    InputComponent
+  ]
+
+  constructor(private injector: Injector) {
+  }
+  ngDoBootstrap() {
+    const input = createCustomElement(InputComponent, { injector: this.injector });
+    customElements.define('ds2-input', input);
+  }
+
+<body>
+  <ds2-root></ds2-root>
+  <div id="content"></div>
+</body>
+<script>
+  const input_ds2 = document.createElement('ds2-input');
+  content.appendChild(input_ds2 );
+</script>
+
+------ step 2
+
+npm i ngx-build-plus --save-dev
+
+angular.json
+replace -> "builder": "@angular-devkit/build-angular: --> "builder": "ngx-build-plus:
+
+"architect": {
+  "build": {
+    "builder": "ngx-build-plus:build",
+    ....
+  "serve": {
+    "builder": "ngx-build-plus:dev-server",
+    ...
+  "test": {
+    "builder": "ngx-build-plus:karma",
+
+
+ng serve --port=4201 --single-bundle
+
+In other project Angular
+
+<script>
+  const script = document.createElement('script');
+  script.src = 'http://localhost:4201/main.js';
+  document.body.appendChild(script);
+
+  const input_ds2 = document.createElement('ds2-input');
+  content.appendChild(input_ds2);
+</script>

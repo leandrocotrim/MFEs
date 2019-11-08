@@ -1,0 +1,92 @@
+https://www.softwarearchitekt.at/aktuelles/angular-elements-part-i/
+
+tsconfig.json
+"target": "es2015", -> "target": "es5",
+
+npm i @angular/elements --save
+npm i @webcomponents/custom-elements --save
+
+polyfills.ts
+import '@webcomponents/custom-elements/custom-elements.min';
+
+angular.json
+"scripts": [
+  "node_modules/@webcomponents/custom-elements/src/native-shim.js"
+]
+
+ng add @angular/elements
+
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+  schemas:[
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+// bootstrap: [AppComponent]
+ entryComponents: [
+    InputComponent
+  ]
+
+  constructor(private injector: Injector) {
+  }
+  ngDoBootstrap() {
+    const input = createCustomElement(InputComponent, { injector: this.injector });
+    customElements.define('ds4-input', input);
+  }
+
+<body>
+  <ds4-root></ds4-root>
+  <div id="content"></div>
+</body>
+<script>
+  const input_ds4 = document.createElement('ds4-input');
+  content.appendChild(input_ds4);
+</script>
+
+------ step 2
+
+npm i ngx-build-plus --save-dev
+
+angular.json
+replace -> "builder": "@angular-devkit/build-angular: --> "builder": "ngx-build-plus:
+
+"architect": {
+  "build": {
+    "builder": "ngx-build-plus:build",
+    ....
+  "serve": {
+    "builder": "ngx-build-plus:dev-server",
+    ...
+  "test": {
+    "builder": "ngx-build-plus:karma",
+
+// if (environment.production) {
+//     enableProdMode();
+// }
+
+RUN1
+ng serve --port=4204 --single-bundle
+
+BUILD
+ng g ngx-build-plus:externals
+// ng g ngx-build-plus:externals --project ds4
+npm i
+
+RUN2
+npm run build:externals
+// npm run build:ds4:externals
+
+add --output-hashing=none
+
+cd dist/ds4
+npm -g live-server
+live-server --port=9094
+
+In other project Angular
+
+<!-- <script src="http://127.0.0.1:9094/scripts.js" defer="" onload="ng.core.enableProdMode();"></script> -->
+<script src="http://127.0.0.1:9094/main.js" defer=""></script>
+
+<script>
+  const input_ds4 = document.createElement('ds4-input');
+  content.appendChild(input_ds4);
+</script>
