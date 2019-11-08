@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:externals": "ng build --extra-webpack-config webpack.externals.js --prod --single-bundle --output-hashing=none && cd dist/ds3 && live-server --port=9090",
+    "build:externals": "ng build --extra-webpack-config webpack.externals.js --prod --single-bundle --output-hashing=none && cd dist/ds3 && live-server --port=9093",
     "build:ds3:externals": "ng build --extra-webpack-config webpack.externals.js --prod --project ds3 --single-bundle --output-hashing=none"
   },
   "private": true,

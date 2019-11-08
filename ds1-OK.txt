@@ -43,3 +43,5 @@ import { createCustomElement } from '@angular/elements';
   content.appendChild(input);
 </script>
 
+ng serve
+
