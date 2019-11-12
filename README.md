@@ -5,7 +5,7 @@
 `Enviroment`
 
 - **npm install -g @angular/cli/**
-- **npm -g live-server**
+- **npm install -g live-server**
 
 `Starts`
 
